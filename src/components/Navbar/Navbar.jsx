@@ -10,7 +10,7 @@ function Navbar() {
         <NavLink to='/product/add'>Add Product</NavLink>
       </div>
       <div>
-        <NavLink to='/cart'>Cart</NavLink>
+        <NavLink to='/cart'>Cart (0)</NavLink>
       </div>
     </nav>
   )

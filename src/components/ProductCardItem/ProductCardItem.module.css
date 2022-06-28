@@ -1,0 +1,54 @@
+.card {
+  width: 250px;
+}
+
+button {
+  background: #fff;
+  border: unset;
+  outline: 0;
+  cursor: pointer;
+  color: #65676b;
+  padding: 12px 10px;
+}
+
+button:hover {
+  background: #77e64c;
+  color: #ffffff;
+}
+
+button:active {
+  background: #65ce3c;
+}
+
+.productDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productDetails a {
+  text-decoration: none;
+  color: #000;
+}
+
+.productDetails a:hover,
+a:active {
+  color: #65ce3c;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #7f8081;
+}
+
+.image {
+  border: 1px solid rgb(219, 219, 219);
+  height: 250px;
+  margin-bottom: 10px;
+}
+
+.image a {
+  text-decoration: none;
+}
