@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  margin: 0 20px;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #65ce3c;
+  color: #fff;
+}
+
+th,
+td {
+  height: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tableContainer {
+  height: 100vh;
+}

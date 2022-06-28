@@ -1,0 +1,105 @@
+{
+  "products": [
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": ""
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": ""
+    }
+  ],
+  "cartItems": [
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": "",
+      "quantity": 1
+    },
+    {
+      "name": "Product 2",
+      "price": "300",
+      "categories": ["Category3", "Category5"],
+      "description": "product 2 description",
+      "long_description": "product 2 long description",
+      "image": "",
+      "quantity": 2
+    },
+    {
+      "name": "Product 1",
+      "price": "100",
+      "categories": ["Category1", "Category2"],
+      "description": "product 1 description",
+      "long_description": "product 1 long description",
+      "image": "",
+      "quantity": 3
+    }
+  ]
+}
