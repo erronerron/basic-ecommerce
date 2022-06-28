@@ -1,0 +1,22 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(209, 196, 196, 0.2);
+  color: white;
+  padding: 1.5rem 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+.navItems {
+  display: flex;
+  gap: 1rem;
+}
