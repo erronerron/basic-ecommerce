@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { updateCart } from '../../../store/features/cart/cartSlice'
 import {
   upsertProduct,
   getProduct,
@@ -20,6 +21,7 @@ function ProductForm() {
   const [categories, setCategories] = useState([])
   const [image, setImage] = useState('')
 
+  const checkBoxItems = ['Category1', 'Category2', 'Category3']
   const { name, price, description, long_description } = formData
 
   const onChange = (e) => {
@@ -75,6 +77,8 @@ function ProductForm() {
       })
       setImage('')
       setCategories([])
+    } else {
+      dispatch(updateCart(productData))
     }
     alert('Saved changes')
   }
@@ -82,6 +86,15 @@ function ProductForm() {
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(URL.createObjectURL(e.target.files[0]))
+    }
+  }
+
+  const onCheckboxChange = (e) => {
+    if (e.currentTarget.checked) {
+      setCategories([...categories, e.target.value])
+    } else {
+      const newArr = categories.filter((item) => item !== e.target.value)
+      setCategories(newArr)
     }
   }
 
@@ -122,14 +135,20 @@ function ProductForm() {
                   required
                 />
               </div>
-              <div className={style.subtitle2}>
-                <input
-                  type='checkbox'
-                  name='category1'
-                  id='category1'
-                  value='Category1'
-                />
-                <label htmlFor='category1'>Category1</label>
+              <div className={style.checkboxes}>
+                {checkBoxItems.map((item, index) => (
+                  <div key={index}>
+                    <input
+                      id={item}
+                      name={item}
+                      type={'checkbox'}
+                      value={item}
+                      onChange={onCheckboxChange}
+                      checked={categories.includes(item)}
+                    />
+                    <label htmlFor={item}>{item}</label>
+                  </div>
+                ))}
               </div>
               <div className={style.description}>
                 <textarea

@@ -1,17 +1,29 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import { addToCart } from '../../../store/features/cart/cartSlice'
 import { getProduct } from '../../../store/features/products/productSlice'
 import style from './ViewProduct.module.css'
 
 function ViewProduct() {
-  const { product } = useSelector((state) => state.products)
+  const { products, product } = useSelector((state) => state.products)
   const dispatch = useDispatch()
   const { id } = useParams()
 
   useEffect(() => {
     dispatch(getProduct(Number(id)))
   }, [dispatch, product, id])
+
+  const addProductToCart = () => {
+    let productData = products.filter((item) => item.id === product?.id)[0]
+
+    dispatch(
+      addToCart({
+        ...productData,
+        quantity: 1,
+      })
+    )
+  }
 
   return (
     <div className='container'>
@@ -30,7 +42,9 @@ function ViewProduct() {
             <Link to={`/product/${product?.id}/edit`}>
               <button>Edit</button>
             </Link>
-            <button>Add to Cart</button>
+            <button onClick={() => addProductToCart(product?.id)}>
+              Add to Cart
+            </button>
           </div>
         </div>
         <div>{product?.long_description}</div>

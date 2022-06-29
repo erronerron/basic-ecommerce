@@ -3,7 +3,16 @@
   padding: 50px 0;
 }
 
-input {
+.checkboxes {
+  color: rgb(143, 140, 140);
+  font-size: 20px;
+  display: flex;
+  margin-bottom: 10px;
+  gap: 1rem;
+}
+
+form input[type='text'],
+input[type='number'] {
   font: inherit;
   padding: 0.1em 0.5em;
   width: 100%;
@@ -39,12 +48,6 @@ textarea {
 
 .subtitle {
   font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.subtitle2 {
-  color: rgb(143, 140, 140);
-  font-size: 20px;
   margin-bottom: 10px;
 }
 

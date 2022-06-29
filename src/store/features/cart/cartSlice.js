@@ -31,8 +31,28 @@ const cartSlice = createSlice({
         return (acc += item?.quantity * item?.price)
       }, 0)
     },
+    updateCart: (state, action) => {
+      const product = action.payload
+      
+      state.cart = state.cart.map(item => {
+        return {...item, ...product}
+      })
+      
+      state.cartItems = state.cart.reduce((acc, item) => {
+        return (acc += item?.quantity)
+      }, 0)
+
+      state.cartTotal = state.cart.reduce((acc, item) => {
+        return (acc += item?.quantity * item?.price)
+      }, 0)
+    },
+    resetCart: (state) => {
+      state.cart = []
+      state.cartItems = 0
+      state.cartTotal = 0
+    },
   },
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart, resetCart, updateCart } = cartSlice.actions
 export default cartSlice.reducer
