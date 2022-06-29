@@ -1,11 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ProductCardItem from '../../../components/ProductCardItem/ProductCardItem'
-import jsonData from '../../../products.json'
 import style from './ProductsPage.module.css'
 
 function ProductsPage() {
-  const products = jsonData.products
-  // const products = []
+  const { products } = useSelector((state) => state.products)
 
   return (
     <div className='container'>
