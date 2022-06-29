@@ -1,10 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../../../store/features/cart/cartSlice'
 import ProductCardItem from '../../../components/ProductCardItem/ProductCardItem'
 import style from './ProductsPage.module.css'
 
 function ProductsPage() {
   const { products } = useSelector((state) => state.products)
+  const dispatch = useDispatch()
+
+  const addProductToCart = (productId) => {
+    let product = products.filter((product) => product.id === productId)[0]
+
+    dispatch(
+      addToCart({
+        ...product,
+        quantity: 1,
+      })
+    )
+  }
 
   return (
     <div className='container'>
@@ -12,7 +25,13 @@ function ProductsPage() {
       {products && products.length ? (
         <div className={style.wrapper}>
           {products.map((product, index) => {
-            return <ProductCardItem key={index} product={product} />
+            return (
+              <ProductCardItem
+                key={index}
+                product={product}
+                onClick={() => addProductToCart(product.id)}
+              />
+            )
           })}
         </div>
       ) : (

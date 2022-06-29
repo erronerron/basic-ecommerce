@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import ProductsPage from './pages/Products/ProductsPage/ProductsPage'
 import ProductForm from './pages/Products/ProductForm/ProductForm'
 import ViewProduct from './pages/Products/ViewProduct/ViewProduct'
@@ -7,10 +9,12 @@ import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 
 function App() {
+  const { cartItems } = useSelector((state) => state.cart)
+
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar cartItems={cartItems} />
         <Routes>
           <Route path='/' element={<ProductsPage />}></Route>
           <Route path='/product/:id' element={<ViewProduct />}></Route>

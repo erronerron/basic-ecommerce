@@ -1,15 +1,15 @@
 import React from 'react'
-import jsonData from '../../products.json'
+import { useSelector } from 'react-redux'
 import style from './Cart.module.css'
 
 function Cart() {
-  const cartItems = jsonData.cartItems
-  // const cartItems = []
+  const { cart, cartTotal } = useSelector((state) => state.cart)
+
   return (
     <div className='container'>
       <h1>Cart</h1>
       <div className={style.tableContainer}>
-        {cartItems && cartItems.length ? (
+        {cart && cart.length ? (
           <div className={style.wrapper}>
             <table>
               <thead>
@@ -21,7 +21,7 @@ function Cart() {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item, index) => {
+                {cart.map((item, index) => {
                   return (
                     <tr key={index}>
                       <td>{item.name}</td>
@@ -38,7 +38,7 @@ function Cart() {
                 <tr>
                   <td colSpan={2}></td>
                   <td>Total</td>
-                  <td>0</td>
+                  <td>{cartTotal || 0}</td>
                 </tr>
               </tfoot>
             </table>

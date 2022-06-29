@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './ProductCardItem.module.css'
 
-function ProductCardItem({ product }) {
+function ProductCardItem({ product, onClick }) {
   return (
     <div className={style.card}>
       <Link to={`/product/${product.id}`}>
@@ -17,7 +17,7 @@ function ProductCardItem({ product }) {
           </Link>
           <div className={style.subtitle}>{product.price}</div>
         </div>
-        <button>Add to Cart</button>
+        <button onClick={onClick}>Add to Cart</button>
       </div>
     </div>
   )
