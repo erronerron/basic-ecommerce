@@ -52,3 +52,9 @@ a:active {
 .image a {
   text-decoration: none;
 }
+
+img {
+  height: 250px;
+  width: 250px;
+  object-fit: fill;
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addProduct } from '../../../store/features/products/productSlice'
 import style from './ProductForm.module.css'
@@ -6,6 +6,7 @@ import style from './ProductForm.module.css'
 function ProductForm() {
   const { products } = useSelector((state) => state.products)
   const dispatch = useDispatch()
+  const [image, setImage] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -18,12 +19,19 @@ function ProductForm() {
         categories: [],
         description: e.target.description.value,
         long_description: e.target.long_description.value,
-        image: e.target.image.value,
+        image,
       })
     )
 
     e.target.reset()
+    setImage('')
     alert('Added new product.')
+  }
+
+  const onImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(URL.createObjectURL(e.target.files[0]))
+    }
   }
 
   return (
@@ -32,8 +40,13 @@ function ProductForm() {
         <div className={style.wrapper}>
           <div className={style.productView}>
             <div className={style.image}>
-              <input type='file' name='image' id='image' />
-              <img src='' alt='Product 1' />
+              <input
+                type='file'
+                name='image'
+                id='image'
+                onChange={onImageChange}
+              />
+              <img src={image} alt='Product' />
             </div>
             <div className='productDetails'>
               <div className={style.title}>
