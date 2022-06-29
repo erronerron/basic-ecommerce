@@ -7,8 +7,19 @@ const productSlice = createSlice({
     product: null,
   },
   reducers: {
-    addProduct: (state, action) => {
-      state.products = [...state.products, action.payload]
+    upsertProduct: (state, action) => {
+      const elementIndex = state.products.findIndex(
+        (item) => item.id === action.payload?.id
+      )
+
+      if (elementIndex < 0) {
+        state.products = [...state.products, action.payload]
+      } else {
+        state.products[elementIndex] = {
+          ...action.payload,
+        }
+      }
+
       localStorage.setItem('products', JSON.stringify([...state.products]))
     },
     getProduct: (state, action) => {
@@ -19,5 +30,5 @@ const productSlice = createSlice({
   },
 })
 
-export const { addProduct, getProduct } = productSlice.actions
+export const { upsertProduct, getProduct } = productSlice.actions
 export default productSlice.reducer

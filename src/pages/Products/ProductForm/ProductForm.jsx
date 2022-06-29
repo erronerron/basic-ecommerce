@@ -1,31 +1,82 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addProduct } from '../../../store/features/products/productSlice'
+import { useParams } from 'react-router-dom'
+import {
+  upsertProduct,
+  getProduct,
+} from '../../../store/features/products/productSlice'
 import style from './ProductForm.module.css'
 
 function ProductForm() {
-  const { products } = useSelector((state) => state.products)
+  const { products, product } = useSelector((state) => state.products)
   const dispatch = useDispatch()
+  const { id } = useParams()
+  const [formData, setFormData] = useState({
+    name: '',
+    price: 0,
+    description: '',
+    long_description: '',
+  })
+  const [categories, setCategories] = useState([])
   const [image, setImage] = useState('')
+
+  const { name, price, description, long_description } = formData
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getProduct(Number(id)))
+
+      if (product) {
+        const {
+          name,
+          price,
+          description,
+          long_description,
+          image,
+          categories,
+        } = product
+
+        setFormData({ name, price, description, long_description })
+        setImage(image)
+        setCategories(categories)
+      }
+    }
+  }, [dispatch, id, product])
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(
-      addProduct({
-        id: products.length + 1,
-        name: e.target.name.value,
-        price: e.target.price.value,
-        categories: [],
-        description: e.target.description.value,
-        long_description: e.target.long_description.value,
-        image,
-      })
-    )
+    const productData = {
+      id: product?.id ?? products.length + 1,
+      name,
+      price,
+      categories,
+      description,
+      long_description,
+      image,
+    }
 
-    e.target.reset()
-    setImage('')
-    alert('Added new product.')
+    dispatch(upsertProduct(productData))
+
+    if (!id) {
+      setFormData({
+        name: '',
+        price: 0,
+        categories: [],
+        description: '',
+        long_description: '',
+      })
+      setImage('')
+      setCategories([])
+    }
+    alert('Saved changes')
   }
 
   const onImageChange = (e) => {
@@ -35,18 +86,18 @@ function ProductForm() {
   }
 
   return (
-    <div className='container'>
+    <section className='container'>
       <form onSubmit={onSubmit}>
         <div className={style.wrapper}>
           <div className={style.productView}>
             <div className={style.image}>
+              <img src={image} alt='Product' />
               <input
                 type='file'
                 name='image'
                 id='image'
                 onChange={onImageChange}
               />
-              <img src={image} alt='Product' />
             </div>
             <div className='productDetails'>
               <div className={style.title}>
@@ -55,6 +106,8 @@ function ProductForm() {
                   name='name'
                   id='name'
                   placeholder='Product Name'
+                  value={name}
+                  onChange={onChange}
                   required
                 />
               </div>
@@ -64,6 +117,8 @@ function ProductForm() {
                   name='price'
                   id='price'
                   placeholder='Price'
+                  value={price}
+                  onChange={onChange}
                   required
                 />
               </div>
@@ -80,9 +135,11 @@ function ProductForm() {
                 <textarea
                   name='description'
                   id='description'
-                  cols='30'
-                  rows='10'
+                  cols='50'
+                  rows='4'
                   placeholder='Description'
+                  value={description}
+                  onChange={onChange}
                   required
                 ></textarea>
               </div>
@@ -93,15 +150,17 @@ function ProductForm() {
               name='long_description'
               id='long_description'
               cols='30'
-              rows='10'
+              rows='4'
               placeholder='Long Description'
+              value={long_description}
+              onChange={onChange}
               required
             ></textarea>
           </div>
           <button type='submit'>Save Product</button>
         </div>
       </form>
-    </div>
+    </section>
   )
 }
 
