@@ -56,15 +56,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-button:hover {
-  background: #77e64c;
-  color: #ffffff;
-}
-
-button:active {
-  background: #65ce3c;
-}
-
 @media (max-width: 890px) {
   .productView {
     display: inline;

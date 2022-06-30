@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Button from '../../components/Button/Button'
 import { resetCart } from '../../store/features/cart/cartSlice'
+import { formatPrice } from '../../utils/formatPrice'
 import style from './Cart.module.css'
 
 function Cart() {
@@ -28,10 +30,12 @@ function Cart() {
                     return (
                       <tr key={index}>
                         <td>{item.name}</td>
-                        <td>{item.price}</td>
+                        <td>{formatPrice(item.price)}</td>
                         <td>{item.quantity}</td>
                         <td>
-                          {Number(item.quantity ?? 0) * Number(item.price ?? 0)}
+                          {formatPrice(
+                            Number(item.quantity ?? 0) * Number(item.price ?? 0)
+                          )}
                         </td>
                       </tr>
                     )
@@ -41,14 +45,15 @@ function Cart() {
                   <tr>
                     <td colSpan={2}></td>
                     <td>Total</td>
-                    <td>{cartTotal || 0}</td>
+                    <td>{formatPrice(cartTotal || 0)}</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
-            <button onClick={() => dispatch(resetCart())}>
-              Clear All Items
-            </button>
+            <Button
+              onClick={() => dispatch(resetCart())}
+              text='Clear All Items'
+            />
           </>
         ) : (
           <div>No items in the cart.</div>

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import Button from '../../../components/Button/Button'
 import { addToCart } from '../../../store/features/cart/cartSlice'
 import { getProduct } from '../../../store/features/products/productSlice'
+import { formatPrice } from '../../../utils/formatPrice'
 import style from './ViewProduct.module.css'
 
 function ViewProduct() {
@@ -34,17 +36,18 @@ function ViewProduct() {
           </div>
           <div className='productDetails'>
             <div className={style.title}>{product?.name}</div>
-            <div className={style.subtitle}>{product?.price}</div>
+            <div className={style.subtitle}>{formatPrice(product?.price)}</div>
             <div className={style.subtitle2}>
               {product?.categories.join(',')}
             </div>
             <div className={style.description}>{product?.description}</div>
             <Link to={`/product/${product?.id}/edit`}>
-              <button>Edit</button>
+              <Button text='Edit' />
             </Link>
-            <button onClick={() => addProductToCart(product?.id)}>
-              Add to Cart
-            </button>
+            <Button
+              onClick={() => addProductToCart(product?.id)}
+              text='Add to Cart'
+            />
           </div>
         </div>
         <div>{product?.long_description}</div>

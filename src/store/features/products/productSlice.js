@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { parseJson } from '../../../utils/parseJson'
 
 const productSlice = createSlice({
   name: 'products',
   initialState: {
-    products: JSON.parse(localStorage.getItem('products')) ?? [],
+    products: parseJson(localStorage.getItem('products')) ?? [],
     product: null,
   },
   reducers: {

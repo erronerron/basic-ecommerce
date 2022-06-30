@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import Button from '../../../components/Button/Button'
 import { updateCart } from '../../../store/features/cart/cartSlice'
 import {
   upsertProduct,
@@ -176,7 +177,7 @@ function ProductForm() {
               required
             ></textarea>
           </div>
-          <button type='submit'>Save Product</button>
+          <Button type='submit' text='Save Product' />
         </div>
       </form>
     </section>
