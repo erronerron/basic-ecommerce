@@ -34,7 +34,7 @@ function Cart() {
                         <td>{item.quantity}</td>
                         <td>
                           {formatPrice(
-                            Number(item.quantity ?? 0) * Number(item.price ?? 0)
+                            Number(item.quantity) * Number(item.price)
                           )}
                         </td>
                       </tr>
@@ -45,7 +45,7 @@ function Cart() {
                   <tr>
                     <td colSpan={2}></td>
                     <td>Total</td>
-                    <td>{formatPrice(cartTotal || 0)}</td>
+                    <td>{formatPrice(cartTotal)}</td>
                   </tr>
                 </tfoot>
               </table>

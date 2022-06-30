@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 import { updateCart } from '../../../store/features/cart/cartSlice'
 import {
@@ -12,6 +12,7 @@ import style from './ProductForm.module.css'
 function ProductForm() {
   const { products, product } = useSelector((state) => state.products)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { id } = useParams()
   const [formData, setFormData] = useState({
     name: '',
@@ -78,10 +79,11 @@ function ProductForm() {
       })
       setImage('')
       setCategories([])
+      navigate(`/product/${productData?.id}`)
     } else {
       dispatch(updateCart(productData))
+      navigate(`/product/${productData?.id}`)
     }
-    alert('Saved changes')
   }
 
   const onImageChange = (e) => {
@@ -107,6 +109,7 @@ function ProductForm() {
             <div className={style.image}>
               <img src={image} alt='Product' />
               <input
+                data-testid='image-input'
                 type='file'
                 name='image'
                 id='image'
@@ -116,6 +119,7 @@ function ProductForm() {
             <div className='productDetails'>
               <div className={style.title}>
                 <input
+                  data-testid='name-input'
                   type='text'
                   name='name'
                   id='name'
@@ -127,6 +131,7 @@ function ProductForm() {
               </div>
               <div className={style.subtitle}>
                 <input
+                  data-testid='price-input'
                   type='number'
                   name='price'
                   id='price'
@@ -140,6 +145,7 @@ function ProductForm() {
                 {checkBoxItems.map((item, index) => (
                   <div key={index}>
                     <input
+                      data-testid={`${item}-checkbox`}
                       id={item}
                       name={item}
                       type={'checkbox'}
@@ -153,6 +159,7 @@ function ProductForm() {
               </div>
               <div className={style.description}>
                 <textarea
+                  data-testid={`description-input`}
                   name='description'
                   id='description'
                   cols='50'
@@ -167,6 +174,7 @@ function ProductForm() {
           </div>
           <div>
             <textarea
+              data-testid={`long_description-input`}
               name='long_description'
               id='long_description'
               cols='30'
