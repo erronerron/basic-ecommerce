@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import { renderWithProvider as render } from '../../../utils/rtlUtil'
 import ProductForm from './ProductForm'
-import ViewProduct from '../ViewProduct/ViewProduct'
+import ProductsPage from '../ProductsPage/ProductsPage'
 
 describe('ProductForm Component', () => {
   const product = {
@@ -75,7 +75,7 @@ describe('ProductForm Component', () => {
     render(
       <MemoryRouter initialEntries={['/product/1/edit']}>
         <Routes>
-          <Route path='/product/:id' element={<ViewProduct />}></Route>
+          <Route path='/' element={<ProductsPage />}></Route>
           <Route path='/product/:id/edit' element={<ProductForm />}></Route>
         </Routes>
       </MemoryRouter>,

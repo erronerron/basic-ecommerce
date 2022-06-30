@@ -79,10 +79,10 @@ function ProductForm() {
       })
       setImage('')
       setCategories([])
-      navigate(`/product/${productData?.id}`)
+      navigate(`/`)
     } else {
       dispatch(updateCart(productData))
-      navigate(`/product/${productData?.id}`)
+      navigate(`/`)
     }
   }
 

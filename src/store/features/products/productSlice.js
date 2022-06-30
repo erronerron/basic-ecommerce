@@ -21,6 +21,7 @@ const productSlice = createSlice({
         }
       }
 
+      state.product = null
       localStorage.setItem('products', JSON.stringify([...state.products]))
     },
     getProduct: (state, action) => {
