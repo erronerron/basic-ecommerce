@@ -1,6 +1,6 @@
 import productReducer, { upsertProduct, getProduct } from './productSlice'
 
-describe('counter reducer', () => {
+describe('Product reducer', () => {
   const product = {
     id: 1,
     name: 'Test',

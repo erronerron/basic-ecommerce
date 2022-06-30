@@ -1,6 +1,6 @@
 import cartReducer, { addToCart, updateCart, resetCart } from './cartSlice'
 
-describe('counter reducer', () => {
+describe('Cart reducer', () => {
   const product = {
     name: 'Test',
     price: 100,

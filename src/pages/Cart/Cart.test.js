@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event'
 import { fireEvent, screen } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
