@@ -1,12 +1,8 @@
 import React from 'react'
 import './Footer.style.css'
 
-function Footer() {
-  return (
-    <>
-      <footer>Basic Ecommerce</footer>
-    </>
-  )
+function Footer({ text = 'Basic Ecommerce' }) {
+  return <footer>{text}</footer>
 }
 
 export default Footer
